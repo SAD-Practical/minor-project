@@ -2,7 +2,8 @@ import jsPDF from 'jspdf'
 import React,{useRef,useEffect} from 'react'
 import io from 'socket.io-client'
 import './styles/board.css'
-
+import './styles/heading.css'
+import ScreenRecorderApp from './ScreenRecorder'
 const Board=()=>{
     const canvasRef=useRef(null)
     const colorsRef=useRef(null)
@@ -43,7 +44,7 @@ const Board=()=>{
             }
             const w=canvas.width
             const h=canvas.height
-
+            
             socketRef.current.emit('drawing',{
                 x0:x0/w,
                 y0:y0/h,
@@ -214,7 +215,7 @@ const Board=()=>{
     const drawDiamond=()=>{
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d")
-        var x=275; var y=175;
+        var x=200; var y=300;
         var w=200; var h=200;
         const colors=['#E3170D','#9D1309','#F22C1E'];
         sketch(x,y,w,h,context,colors);
@@ -237,13 +238,18 @@ const Board=()=>{
         pdf.save('my_image.pdf');
     }
 
-    
     return(
       <div className="container">
           <div className="row">
           <canvas ref={canvasRef} className="whiteboard"/>
           </div>
+          <div className="row justify-content-center align-items-center">
+          <div className="col-12 ">
+          <div className="neon text-center">Online Whiteboard</div>
+          </div>
+          </div>
           <div className="row">
+          
           <div ref={colorsRef} className="colors mt-3 col-4">
              <h6 className="bold">Strokes</h6>
              <div className="color black rounded-circle mr-2" />
@@ -265,15 +271,22 @@ const Board=()=>{
           <button className="mr-2" onClick={drawCircle}><i className="fa fa-circle-thin" style={{fontSize:'24px'}}></i></button>
           <button className="mr-2" onClick={drawTriangle}><i className="fa fa-caret-up" style={{fontSize:'24px'}}></i></button>
           <button className="mr-2" onClick={drawDiamond}><i className="fa fa-diamond" style={{fontSize:'24px'}}></i></button>
+          
+          <div className="row">
+              <div className="col">
+              <h6 className="bold ">Click here to download</h6>
+          <button className="mr-2" onClick={downloadImage}><i className="fa fa-download" style={{fontSize:'24px'}}></i></button>
+          <button className="mr-2" onClick={downloadPdf}><i className="fa fa-file-pdf-o" style={{fontSize:'24px'}}></i></button>
+              </div>
+          </div> 
+
           </div>
 
           <div className="col-3 mt-3">
-          <h6 className="bold ">Click here to download</h6>
-          <button className="mr-2" onClick={downloadImage}><i className="fa fa-download" style={{fontSize:'24px'}}></i></button>
-          <button className="mr-2" onClick={downloadPdf}><i className="fa fa-file-pdf-o" style={{fontSize:'24px'}}></i></button>
+          <ScreenRecorderApp/>
           </div>
-
           </div>
+          
       </div>
     )
 }

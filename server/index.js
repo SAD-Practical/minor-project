@@ -7,11 +7,9 @@ const server=http.createServer(app)
 const socket=require('socket.io')
 const io=socket(server)
 
-io.on('connection',onConnection);
-
-function onConnection(socket){
+io.on('connection',(socket)=>{
     socket.on('drawing',(data)=>socket.broadcast.emit('drawing',data))
-}
+});
 
 const port=3000
 server.listen(port,()=>{

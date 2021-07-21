@@ -1,4 +1,6 @@
-Online White board-Online White Board using which using draw and write anything you want using brush provided.You can change the color of brush too.You can also use different shapes provided.You can also download the content on whiteboard as jpeg as well as pdf.Recording feature is also provided.
+Online White board
+
+Online White Board using which using draw and write anything you want using brush provided.You can change the color of brush too.You can also use different shapes provided.You can also download the content on whiteboard as jpeg as well as pdf.Recording feature is also provided.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
